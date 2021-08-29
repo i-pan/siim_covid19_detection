@@ -179,7 +179,7 @@ class DetectionTask(BaseTask):
             cls_gt = gt_labels[gt_labels == each_cls]
             cls_bboxes = gt_bboxes[gt_labels == each_cls]
             tp, fp = tpfp_default(cls_dets[...,:-1], cls_bboxes, iou_thr=self.eval_iou_thr)
-            scores = dets[...,-2]
+            scores = cls_dets[...,-2]
             results = torch.cat([tp, fp, scores.unsqueeze(0)])
             results = results.transpose(1,0)
             tpfp_list.append(results)
