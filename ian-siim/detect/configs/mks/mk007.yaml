@@ -13,6 +13,7 @@ data:
       flip: true
       verbose: true
   exclude_negative_train: true
+  sampler: null
 
 
 transform:
