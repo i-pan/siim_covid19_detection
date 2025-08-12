@@ -72,7 +72,6 @@ def build_trainer(cfg, args, task, snapshot=-1):
         max_epochs=cfg.train.num_epochs,
         callbacks=[ModelCheckpoint(
             monitor='vm',
-            filename='{epoch:03d}-{vm:.4f}',
             save_last=True,
             save_weights_only=True,
             mode=cfg.evaluate.mode,
