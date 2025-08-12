@@ -27,8 +27,9 @@ def parse_args():
     parser.add_argument('--save-preds-file', type=str)
     parser.add_argument('--rank-average', action='store_true')
     parser.add_argument('--local_rank', type=int, default=0)
-
-    parser = pl.Trainer.add_argparse_args(parser)
+    parser.add_argument('--gpus', type=int, default=1)
+    parser.add_argument('--precision', type=int, default=16)
+    parser.add_argument('--num_workers', type=int, default=2)
     return parser.parse_args()
 
 
