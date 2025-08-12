@@ -42,8 +42,7 @@ def crop(imsize, mode):
 def grayscale_augment(p, n):
     augs = A.OneOf([
         A.RandomGamma(),
-        A.RandomContrast(),
-        A.RandomBrightness(),
+        A.RandomBrightnessContrast(),
         A.ShiftScaleRotate(shift_limit=0.10, scale_limit=0, rotate_limit=0),
         A.ShiftScaleRotate(shift_limit=0.00, scale_limit=0.15, rotate_limit=0),
         A.ShiftScaleRotate(shift_limit=0.00, scale_limit=0, rotate_limit=30),
