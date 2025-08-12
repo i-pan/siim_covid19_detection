@@ -12,38 +12,6 @@ from .. import metrics
 from .datamaker import get_train_val_datasets
 
 
-class ModelCheckpoint(pl.callbacks.ModelCheckpoint):
-
-    @classmethod
-    def _format_checkpoint_name(
-        cls,
-        filename: Optional[str],
-        epoch: int,
-        step: int,
-        metrics: Dict[str, Any],
-        prefix: str = "",
-    ) -> str:
-        if not filename:
-            # filename is not set, use default name
-            filename = "{epoch}" + cls.CHECKPOINT_JOIN_CHAR + "{step}"
-
-        # check and parse user passed keys in the string
-        groups = re.findall(r"(\{.*?)[:\}]", filename)
-        if len(groups) >= 0:
-            metrics.update({"epoch": epoch, 'step': step})
-            for group in groups:
-                name = group[1:]
-                filename = filename.replace(group, name + "{" + name)
-                if name not in metrics:
-                    metrics[name] = 0
-            filename = filename.format(**metrics)
-
-        if prefix:
-            filename = cls.CHECKPOINT_JOIN_CHAR.join([prefix, filename])
-
-        return filename
-
-
 def build_elements(cfg): 
     # Create model
     model = builder.build_model(cfg)
