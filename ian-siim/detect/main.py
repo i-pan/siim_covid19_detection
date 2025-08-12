@@ -28,7 +28,8 @@ def parse_args():
     parser.add_argument('--rank-average', action='store_true')
     parser.add_argument('--local_rank', type=int, default=0)
     parser.add_argument('--devices', type=int, default=1)
-    parser.add_argument('--precision', type=str, default="16-mixed")
+    parser.add_argument('--precision', type=str, default='16-mixed')
+    parser.add_argument('--accelerator', type=str, default='cuda')
     parser.add_argument('--num_workers', type=int, default=2)
     return parser.parse_args()
 
