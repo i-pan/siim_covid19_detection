@@ -66,7 +66,7 @@ class BaseTask(pl.LightningModule):
         for m in self.metrics: m.update(p, y)
         return loss
         
-    def validation_epoch_end(self, *args, **kwargs):
+    def on_validation_epoch_end(self, *args, **kwargs):
         metrics = {}
         for m in self.metrics:
             metrics.update(m.compute())
