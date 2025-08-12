@@ -2,8 +2,8 @@ import numpy as np
 import torch
 import pytorch_lightning as pl
 
-from pytorch_lightning.metrics import functional as FM
 from sklearn.metrics import cohen_kappa_score, roc_auc_score, average_precision_score
+from torchmetrics import Metric
 
 
 def _roc_auc_score(t, p):
@@ -14,7 +14,7 @@ def _average_precision_score(t, p):
     return torch.tensor(average_precision_score(t, p) if len(np.unique(t)) > 1 else 0)
 
 
-class _BaseMetric(pl.metrics.Metric):
+class _BaseMetric(Metric):
 
     def __init__(self, dist_sync_on_step=False, **kwargs):
         super().__init__(dist_sync_on_step=dist_sync_on_step)
@@ -76,7 +76,7 @@ def average_precision(recalls, precisions, mode='area'):
     return ap
 
 
-class mAP(pl.metrics.Metric):
+class mAP(Metric):
 
     def __init__(self, num_classes, eps=1.0e-7, dist_sync_on_step=False):
         super().__init__(dist_sync_on_step=dist_sync_on_step)
