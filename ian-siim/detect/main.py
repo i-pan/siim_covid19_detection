@@ -31,6 +31,7 @@ def parse_args():
     parser.add_argument('--precision', type=str, default='16-mixed')
     parser.add_argument('--accelerator', type=str, default='cuda')
     parser.add_argument('--num_workers', type=int, default=2)
+    parser.add_argument('--sync_batchnorm', action='store_true')
     return parser.parse_args()
 
 
