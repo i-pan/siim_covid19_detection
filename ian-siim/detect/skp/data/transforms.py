@@ -47,7 +47,7 @@ def grayscale_augment(p, n):
         A.ShiftScaleRotate(shift_limit=0.00, scale_limit=0.15, rotate_limit=0),
         A.ShiftScaleRotate(shift_limit=0.00, scale_limit=0, rotate_limit=30),
         A.GaussianBlur(),
-        A.IAAAdditiveGaussianNoise()
+        A.GaussNoise()
     ], p=1)
     return A.Compose([augs] * n, p=p, bbox_params=A.BboxParams(format='pascal_voc', label_fields=['labels']))
 
