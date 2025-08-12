@@ -83,5 +83,6 @@ evaluate:
         num_classes: 1
   monitor: map
   mode: max
+  save_top_k: 1
 
 
