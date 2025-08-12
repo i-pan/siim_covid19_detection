@@ -65,7 +65,10 @@ def build_elements(cfg):
 
 def build_trainer(cfg, args, task, snapshot=-1): 
     version = f'snapshot_{snapshot}' if snapshot >= 0 else ''
-    trainer = pl.Trainer.from_argparse_args(args,
+    trainer = pl.Trainer(
+        precision=args.precision,
+        devices=args.devices,
+        accelerator=args.accelerator,
         max_epochs=cfg.train.num_epochs,
         callbacks=[ModelCheckpoint(
             monitor='vm',
