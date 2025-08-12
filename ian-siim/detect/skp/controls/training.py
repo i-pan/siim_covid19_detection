@@ -49,7 +49,7 @@ def build_elements(cfg):
     model = builder.build_model(cfg)
     if cfg.model.load_pretrained:
         print(f'Loading pretrained model from {cfg.model.load_pretrained} ...')
-        weights = torch.load(cfg.model.load_pretrained, map_location=lambda storage, loc: storage)['state_dict']
+        weights = torch.load(cfg.model.load_pretrained, map_location=lambda storage, loc: storage, weights_only=True)['state_dict']
         weights = {re.sub(r'^model.', '', k) : v for k,v in weights.items()}
         model.load_state_dict(weights, strict=False)
 
