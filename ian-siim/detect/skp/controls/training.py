@@ -83,7 +83,7 @@ def build_trainer(cfg, args, task, snapshot=-1):
             name=cfg.experiment.name,
             version=version
         ),
-        replace_sampler_ddp=False,
+        use_distributed_sampler=True,
         accumulate_grad_batches=cfg.train.accumulate_grad_batches or 1,
         profiler='simple'
     )
