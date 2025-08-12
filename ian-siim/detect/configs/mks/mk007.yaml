@@ -74,6 +74,7 @@ scheduler:
 train:
   batch_size: 4
   num_epochs: 12
+  accumulate_grad_batches: 1
 
 
 evaluate: 
